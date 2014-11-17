@@ -21,4 +21,27 @@ class User < ActiveRecord::Base
   scope :students, -> { where(is_teacher: false) }
   scope :teachers, -> { where(is_teacher: true) }
 
+  
+  before_save :hash_password
+
+  
+  def self.authenticate email, password
+    user = where(email: email).first
+    if user && user.hashed_password == BCrypt::Engine.hash_secret(password, user.salt)
+      user
+    else
+      nil
+    end
+  end
+
+
+  private
+
+  def hash_password
+    if password.present?
+      self.salt = BCrypt::Engine.generate_salt
+      self.hashed_password = BCrypt::Engine.hash_secret(password, salt)
+    end
+  end
+
 end

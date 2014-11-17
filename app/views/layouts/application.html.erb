@@ -7,6 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <h1 class="app-title"><%= link_to 'Emark', root_path %></h1>
+
+    <% flash.each do |type, content| %>
+      <%= content_tag :div, content, class: "flash-content flash-content__#{type}" %>
+    <% end %>
 
 <%= yield %>
 
