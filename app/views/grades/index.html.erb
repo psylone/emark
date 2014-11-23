@@ -1,0 +1,7 @@
+<% content_for :menu_bar do %>
+  <%= link_to 'Предметы', subjects_path %> > <%= params[:subject_id] %>
+<% end %>
+
+<ul class="grades">
+  <%= render partial: 'grade', collection: @grades %>
+</ul>

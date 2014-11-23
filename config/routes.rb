@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  # root to: 'users#new'
   root to: 'sessions#new'
 
   get 'login' => 'sessions#new'
@@ -9,7 +8,15 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [ :new, :create, :destroy ]
   resources :users
-  resources :tasks, only: [ :index, :new, :create ]
+  resources :subjects, only: [ :index ] do
+    resources :grades, only: [ :index ]
+  end
+  resources :subject_lines, only: [ :index ] do
+    collection do
+    get :marks
+    put :update_marks
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

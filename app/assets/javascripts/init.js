@@ -1,3 +1,3 @@
 $(function(){
-  Emark.initialize();
+  // Emark.initialize();
 });

@@ -1,19 +1,26 @@
 <!DOCTYPE html>
+
 <html>
-<head>
-  <title>Emark</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Emark</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
     <h1 class="app-title"><%= link_to 'Emark', root_path %></h1>
+
+    <nav class="menu-bar">
+      <%= yield :menu_bar %>
+    </nav>
 
     <% flash.each do |type, content| %>
       <%= content_tag :div, content, class: "flash-content flash-content__#{type}" %>
     <% end %>
 
-<%= yield %>
-
-</body>
+    <div class="screen">
+      <%= yield %>
+    </div>
+  </body>
 </html>

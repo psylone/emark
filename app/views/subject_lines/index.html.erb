@@ -1,0 +1,17 @@
+<ul class="marks">
+  <% @subject_lines.each do |subject_line| %>
+    <li class="marks__subject-line">
+      <span class="subject-line__subject">
+        ➤ <%= subject_line.subject.title %>:
+      </span>
+
+      <% subject_line.marks.each do |mark| %>
+        <span class="subject-line__mark">
+          <%= mark.value %>
+        </span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= button_to "Отправить на почту", root_path %>

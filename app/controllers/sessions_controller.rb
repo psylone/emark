@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
-
+  skip_before_action :login_required, only: [ :new, :create ]
+  before_action :show_dashboard, only: :new
 
   def new
   end
@@ -9,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.authenticate params[:email], params[:password]
     if user
       session[:user_id] = user.id
-      redirect_to tasks_path, notice: 'Добро пожаловать в Emark!'
+      redirect_to dashboard, notice: 'Добро пожаловать в Emark!'
     else
       flash.now.alert = 'Неверный email или пароль'
       render :new
@@ -22,10 +23,18 @@ class SessionsController < ApplicationController
   end
 
 
-  # private
+  private
 
-  # def show_tasks_for_user
-  #   redirect_to tasks_path, notice: 'Добро пожаловать в Контекст!' if current_user
-  # end
+  def show_dashboard
+    redirect_to dashboard, notice: 'Добро пожаловать в Контекст!' if current_user
+  end
+
+  def dashboard
+    if current_user.is_teacher?
+      subjects_path
+    else
+      subject_lines_path
+    end
+  end
 
 end

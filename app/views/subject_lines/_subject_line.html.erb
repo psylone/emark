@@ -1,0 +1,12 @@
+<li class="marks__subject-line">
+  <span class="subject-line__student">
+    <%= subject_line_counter + 1 %>. <%= subject_line.user.fio %>
+  </span>
+
+  <% subject_line.marks.each do |mark| %>
+    <span class="subject-line__mark">
+      <%= select_tag "marks[][value]", options_for_select((1..5).to_a, mark.value), include_blank: true %>
+      <%= hidden_field_tag "marks[][subject_line_id]", subject_line.id %>
+    </span>
+  <% end %>
+</li>

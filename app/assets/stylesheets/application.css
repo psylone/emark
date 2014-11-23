@@ -11,8 +11,11 @@
  * file per style scope.
  *
  *= require reset
- *= require layout
+ *= require ./shared/layout
+ *= require ./shared/menu_bar
  *= require ./shared/flash
  *= require ./shared/form
+ *= require ./screen/subjects
+ *= require ./screen/subject_lines
  *= require_self
  */

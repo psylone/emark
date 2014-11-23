@@ -1,0 +1,11 @@
+<% content_for :menu_bar do %>
+  <%= link_to 'Предметы', subjects_path %> > <%= link_to params[:subject_id], subject_grades_path(params[:subject_id]) %> > <%= @grade.title %>
+<% end %>
+
+<%= form_tag :update_marks_subject_lines, method: :put do %>
+  <ul class="marks">
+    <%= render partial: 'subject_line', collection: @subject_lines %>
+  </ul>
+
+  <%= submit_tag 'Сохранить' %>
+<% end %>

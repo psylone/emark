@@ -1,0 +1,7 @@
+<% content_for :menu_bar do %>
+  Предметы
+<% end %>
+
+<ul class="subjects">
+  <%= render partial: 'subject', collection: @subjects %>
+</ul>
